@@ -1,0 +1,24 @@
+# Results and checkpoints
+results/
+*.pt
+*.pth
+*.ckpt
+
+# Generated data
+data/*/tmp/
+data/*/bpe-data/
+data/data-bin-*/
+seq2seq/data/
+
+# Logs and caches
+*.out
+*.err
+*.log
+logs/
+__pycache__/
+*.py[cod]
+.DS_Store
+
+# Third-party dependencies
+mosesdecoder/
+subword-nmt/
