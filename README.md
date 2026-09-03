@@ -1,17 +1,62 @@
 # Ukrainian–English Neural Machine Translation
 
-This repository contains my contribution to the Ukrainian–English machine-translation component of the project. It includes data preparation, byte-pair encoding (BPE) preprocessing, neural sequence-to-sequence training scripts, and tools for inspecting BPE segmentation.
+This repository contains my implementation and reproducibility contribution to the Ukrainian–English machine-translation component of the project. It includes data preparation, byte-pair encoding (BPE) preprocessing, neural sequence-to-sequence training scripts, and tools for inspecting BPE segmentation.
+
+It is a contribution repository rather than a complete archive of every part of the wider project. The paper reports additional comparative and qualitative work carried out across the project, including Moses SMT, pretrained OPUS-MT and NLLB-200 systems, manual annotation, and the overall research discussion.
+
+## Contribution scope
+
+### My contribution represented here
+
+- Preparing the Ukrainian-English parallel data for experimentation.
+- Creating tokenized and BPE-preparation workflows using Moses and `subword-nmt`.
+- Running and documenting Fairseq Transformer experiments with 5k, 10k, and 30k BPE configurations.
+- Implementing and running custom sequence-to-sequence baselines, including attention and beam-search variants.
+- Writing analysis utilities for BPE segmentation and qualitative examples.
+- Preserving the raw data split, BPE codes, and scripts needed to reproduce this part of the work.
+
+### Wider project and paper
+
+The full project compares this implementation with a Moses phrase-based SMT system and pretrained multilingual systems, specifically OPUS-MT / Helsinki-NLP and NLLB-200. It also includes the paper’s manual named-entity annotation study, automatic evaluation, interpretation, limitations, and conclusions. Those broader components and the final scientific claims belong to the collaborative project and should not be presented as work contained entirely in this repository.
 
 The experimental results and quantitative analysis are reported in the accompanying paper. This repository contains the code and reproducibility material needed to reconstruct the preprocessing and training workflows.
 
-## Authors of the full paper
-Katsutoshi Fujita
+## Key results from the wider project
 
-Anastasiia Neskorodieva
+The results below summarize the paper-level evaluation. The BPE preprocessing and Fairseq/Seq2Seq figures are directly connected to the code in this repository; the Moses, OPUS-MT, NLLB-200, and manual-annotation figures describe the wider collaborative comparison.
 
-Joel Vazquez
+The experiments used 108,496 training sentences, 3,061 development sentences, and 3,752 test sentences from a Ukrainian-English TED-talk corpus.
 
-Kajsa Vesterberg
+### BPE vocabulary size
+
+In a targeted analysis of 206 acronym and named-entity occurrences from the test set, larger BPE vocabularies preserved more items as whole units:
+
+| BPE size | Whole | Split | Whole (%) |
+| ---: | ---: | ---: | ---: |
+| 5k | 28 | 178 | 13.6 |
+| 10k | 100 | 106 | 48.5 |
+| 30k | 160 | 46 | 77.7 |
+
+The main 40-epoch Fairseq Transformer models showed the same trend in automatic evaluation:
+
+| Model | BLEU-4 | SacreBLEU |
+| --- | ---: | ---: |
+| BPE 5k | 8.00 | 6.3 |
+| BPE 10k | 8.45 | 6.9 |
+| BPE 30k | 29.66 | 26.7 |
+
+Additional comparison systems were evaluated as follows:
+
+| Model | BLEU-4 | SacreBLEU |
+| --- | ---: | ---: |
+| Moses SMT | 26.20 | 26.3 |
+| OPUS-MT / Helsinki-NLP | 28.37 | 28.37 |
+| NLLB-200 | 28.19 | 28.19 |
+| Seq2Seq baseline | 7.17 | 7.2 |
+
+The paper reports that NLLB-200 performed best in the targeted qualitative analysis, with 43 agreed `CORRECT` labels and no agreed `INCORRECT` or `OMITTED` cases. The corresponding Cohen's kappa values were 0.88 for Moses, 0.87 for the Fairseq NMT system, 0.93 for OPUS-MT, and 0.92 for NLLB-200.
+
+These results should be interpreted as a targeted study of acronym and named-entity preservation, not as a complete evaluation of all entities or overall translation quality. The manual analysis covered 50 translated sentences and was performed by two Ukrainian speakers.
 
 ## Contents
 
