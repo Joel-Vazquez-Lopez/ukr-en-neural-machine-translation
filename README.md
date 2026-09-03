@@ -4,15 +4,12 @@ This repository contains my implementation and reproducibility contribution to t
 
 It is a contribution repository rather than a complete archive of every part of the wider project. The paper reports additional comparative and qualitative work carried out across the project, including Moses SMT, pretrained OPUS-MT and NLLB-200 systems, manual annotation, and the overall research discussion.
 
-## Full authors list:
+# Full authors list:
 
-Katsutoshi Fujita
-
-Anastasiia Neskorodieva
-
-Joel Vazquez
-
-Kajsa Vesterberg
+- Katsutoshi Fujita
+- Anastasiia Neskorodieva
+- Joel Vazquez
+- Kajsa Vesterberg
 
 ## Contribution scope
 
