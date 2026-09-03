@@ -4,6 +4,12 @@ This repository contains my contribution to the Ukrainian–English machine-tran
 
 The experimental results and quantitative analysis are reported in the accompanying paper. This repository contains the code and reproducibility material needed to reconstruct the preprocessing and training workflows.
 
+## Authors of the full paper
+Katsutoshi Fujita
+Anastasiia Neskorodieva
+Joel Vazquez
+Kajsa Vesterberg
+
 ## Contents
 
 - `data/raw/` — raw parallel Ukrainian–English corpus files.
